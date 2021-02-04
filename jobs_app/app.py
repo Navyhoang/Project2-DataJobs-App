@@ -18,79 +18,188 @@ Base.prepare(engine, reflect=True)
 
 # Set Tables to parameters
 maintable = Base.classes.maintable
+country = Base.classes.country
+location = Base.classes.location
+job = Base.classes.job
+instituition = Base.classes.instituition
+mentalhealth = Base.classes.mentalhealth
 
 # Create session (link) from Python to the DB
 session = Session(engine)
 
-# Set up Flask
+# SET UP FLASK
 app = Flask(__name__)
 
-# Define static routes
+# FRONT_END ROUTE
 @app.route("/")
-def welcome():
+def main():
     return (
-        f"Homepage:<br/>"
-        # f"Available Routes:<br/>"
-        # f"/api/v1.0/precipitation<br/>"
-        # f"/api/v1.0/stations<br/>"
-        # f"/api/v1.0/tobs<br/>"
-        # f"/api/v1.0/<start><br/>"
-        # f"/api/v1.0/<start>/<end>"
+
+        render_template("index.html")
 
     )
 
-# Convert the query results to a dictionary using date as the key and prcp as the value
-@app.route("/api/v1.0/heatmap")
+# SERVICE ROUTES
+
+#---------------------------------------------------------------------------------------
+# HEAT MAP - JOB POSTINGS and UNIVERSITY MARKERS
+#---------------------------------------------------------------------------------------
+@app.route("/api/jobs")
 def heatmap():
 
+    # Dataa for job postings
+    job_data = session.query(maintable.job_id, job.job_title, country.country_name, location.city, location.state, location.lat, location.lng) \
+                            .join(job, maintable.job_title_id == job.job_title_id) \
+                            .join(country, maintable.country_id == country.country_id) \
+                            .join(location, maintable.location_id == location.location_id)\
+                            .all()
+
+    dataset = []
+    for item in job_data: 
+        dataset.append(item)
+
+
+    # Convert the query results to a dictionary 
+    output= {"jobs" : [dataset]}
+
+    return jsonify(output)
+
+@app.route("/api/instituitions")
+def instituitions():
+
+    # Dataa for job postings
+    instituition_data = session.query(instituition.institution, country.country_name)\
+                        .join(country, instituition.country_id == country.country_id).all()
+
+    dataset = []
+    for item in instituition_data: 
+        dataset.append(item)
+
+
+    # Convert the query results to a dictionary 
+    output= {"instituitions" : [dataset]}
+
+    return jsonify(output)
+
+#---------------------------------------------------------------------------------------
+# GAUGE INDICATORS: BENEFITS AND WELLNESS
+#---------------------------------------------------------------------------------------
+@app.route("/api/benefits")
+def benefits():
+
     # Set end_date and start_date
-    job_id = session.query(maintable.job_id).all()
+    benefits_data = session.query(mentalhealth.benefits, mentalhealth.state, country.country_name)\
+                            .join(country, mentalhealth.country_id == country.country_id)\
+                            .all()
+
+    benefits_dataset = []
+
+    for item in benefits_data: 
+        benefits_dataset.append(item)
+
+
+    # Convert the query results to a dictionary 
+    output= {"Benefits" : benefits_dataset
+            }
+
+    return jsonify(output)
+
+@app.route("/api/wellness_programs")
+def wellness_programs():
+
+    # Set end_date and start_date
+    wellness_program = session.query(mentalhealth.wellness_program, mentalhealth.state, country.country_name)\
+                                .join(country, mentalhealth.country_id == country.country_id)\
+                                .all()
+
+    wellness_dataset = []
+
+    for item in wellness_program: 
+        wellness_dataset.append(item)
+
+
+    # Convert the query results to a dictionary 
+    output= {"Wellness Program" : wellness_dataset
+            }
+
+    return jsonify(output)
+
+#---------------------------------------------------------------------------------------
+# BUBBLE CHART : EASE OF TAKING LEAVE
+#---------------------------------------------------------------------------------------
+@app.route("/api/leave")
+def leave():
+
+    # Set end_date and start_date
+    leave_Data = session.query(mentalhealth.leave, mentalhealth.state, country.country_name)\
+                                .join(country, mentalhealth.country_id == country.country_id)\
+                                .all()
+
+
+    leave_dataset = []
+    for item in leave_Data: 
+        leave_dataset.append(item)
+
+
+    # Convert the query results to a dictionary 
+    output= {"leave" : [leave_dataset]}
+
+    return jsonify(output)
+
+#---------------------------------------------------------------------------------------
+# STACKED BAR CHART
+#---------------------------------------------------------------------------------------
+# Use jobs route from heatmap session
+
+#---------------------------------------------------------------------------------------
+# SUMMARY TABLE
+# Selection by User:______
+# Number of Data Analyst Jobs:______
+# Number of Data Scientist Jobs:_____
+# Number of Data Engineer Jobs:_____
+# Number of ML Jobs:_______
+#---------------------------------------------------------------------------------------
+@app.route("/api/summary")
+def summary():
+
+    # Get selection from user?
+
+
+    # Get total counts of Data Analyst jobs
+
+    # Get total counts of Data Scientist jobs
+
+    # Get total counts of Data Engineer jobs
+
+    # Get total counts of ML jobs
+
 
     dataset = []
     for item in job_id: 
         dataset.append(item)
 
+
+    # Convert the query results to a dictionary 
     output= {"output" : [dataset]}
 
     return jsonify(output)
-    # # Convert query results to dictionary                    
-    # job_dict = dict(job_id)
 
-    # # Show result as json file
-    # return jsonify(job_dict)
 
-# #################################################
-# # Flask Setup
-# #################################################
-# app = Flask(__name__)
 
-# #################################################
-# # Database Setup
-# #################################################
-# from flask_sqlalchemy import SQLAlchemy
-# app.config['SQLALCHEMY_DATABASE_URI'] = "postgres://irxrnnfx:8E4uvAlptBYdblhx20hS5t_elOsRbOxm@suleiman.db.elephantsql.com:5432/irxrnnfx"
-# db = SQLAlchemy(app)
 
-# Data = db.maintable
 
-# # class Data(db.maintable):
-# #     __tablename__ = 'main'
+
+
+
+
+
+
+
+
 
 # #     job_id = db.Column(db.job, primary_key=True)
 # #     # job_title_id = db.Column(db.String(64))
 
-
-#     # lat = db.Column(db.Float)
-#     # lon = db.Column(db.Float)
-
-#     # def __repr__(self):
-#     #     return (job_id)
-#         # return '<Pet %r>' % (self.name)
-
-# # create route that renders index.html template
-# @app.route("/")
-# def home():
-#     return render_template("index.html")
 
 # # Query the database and send the jsonified results
 # # @app.route("/send", methods=["GET", "POST"])

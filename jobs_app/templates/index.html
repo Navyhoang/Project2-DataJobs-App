@@ -2,38 +2,111 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Pet Pals!</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>DATA SCIENCE JOBS</title>
+
+  <!-- Reference Bootstrap -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 
 <body>
-    <div class="container">
-        <div class="jumbotron" style="text-align: center">
-            <h1>Pet Pal</h1>
-            <p>Find your pet a pal!</p>
-        </div>
 
-        <div class="row">
-            <div class="col-md-12">
-                <h2>Look at all of the current pet pals!</h2>
-                <div id="plot"></div>
-            </div>
-        </div>
+  <div class="container">
 
-        <div class="row">
-            <div class="col-md-12">
-                <h2><a href="/send">Add your pet here!</a></h2>
-            </div>
-        </div>
+    <!-- Title -->
+    <div class="row">
+      <div class="col-md-12 jumbotron text-center">
+        <h1>Data Science Jobs Dashboard</h1>
+        <p>Use the interactive charts below to explore the dataset</p>
+      </div>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.min.js"></script>
+    
+    <div class="row">
+      <!-- Dropdown menu -->
+      <div class="col-md-2">
+        <div class="well">
+          <h5>Test Subject ID No.:</h5>
+          <select id="selDataset"></select>
+        </div>
 
-    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+
+        <!-- Demographic Info -->
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+            <h3 class="panel-title">Demographic Info</h3>
+          </div>
+          <div id="sample-metadata" class="panel-body"></div>
+        </div>
+      </div>
+
+      <!--Plot -->
+
+      <div>
+        <p> <strong>Availables Routes:</strong></p>
+        <p> /api/jobs</p>
+        <p> /api/instituitions</p>
+        <p> /api/benefits</p>
+        <p> /api/wellness_programs</p>
+        <p> /api/leave</p>
+        <p> /api/summary (IN PROGRESS)</p>
+
+        </div>
+
+      <!-- Horizontal Bar Plot -->
+      <div class="col-md-5">
+        <div id="bar"></div>
+      </div>
+
+      <!-- Gauge Chart -->
+      <div class="col-md-5">
+        <div id="gauge"></div>
+      </div>
+    </div>
+
+    <div class="row">
+      <!-- Bubble chart -->
+      <div class="col-md-12">
+        <div id="bubble"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Link to d3.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.js"></script>
+  
+  <!-- Link to Plotly -->
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  
+  <!-- Link to app.js -->
+  <script src="./static/js/app.js"></script>
+  
+  <!-- Link to bonus.js -->
+  <!-- <script src="/static/js/bonus.js"></script> -->
+  
+  <!-- Link to json data sample -->
+  <!-- <script src="samples.json"></script> -->
+  
 </body>
 
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
