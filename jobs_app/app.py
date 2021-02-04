@@ -166,84 +166,84 @@ def summary():
 
 
     # Get total counts of Data Analyst jobs
-
+    analyst_data = session.query(maintable.job_id, maintable.job_id, job.job_title, country.country_name, location.city, location.state, location.lat, location.lng) \
+                            .join(job, maintable.job_title_id == job.job_title_id) \
+                            .join(country, maintable.country_id == country.country_id) \
+                            .join(location, maintable.location_id == location.location_id)\
+                            .filter(job.job_title == "Data Analyst")\
+                            # .group_by(country.country_name).count()
+                       
+    
     # Get total counts of Data Scientist jobs
+    scientist_data = session.query(maintable.job_id, job.job_title, country.country_name, location.city, location.state, location.lat, location.lng) \
+                            .join(job, maintable.job_title_id == job.job_title_id) \
+                            .join(country, maintable.country_id == country.country_id) \
+                            .join(location, maintable.location_id == location.location_id)\
+                            .filter(job.job_title == "Data Scientist")\
+                            # .group_by(country.country_name).count()
 
     # Get total counts of Data Engineer jobs
+    engineer_data = session.query(maintable.job_id, job.job_title, country.country_name, location.city, location.state, location.lat, location.lng) \
+                            .join(job, maintable.job_title_id == job.job_title_id) \
+                            .join(country, maintable.country_id == country.country_id) \
+                            .join(location, maintable.location_id == location.location_id)\
+                            .filter(job.job_title == "Data Engineer")\
+                            # .group_by(country.country_name).count()
 
     # Get total counts of ML jobs
+    ml_data = session.query(maintable.job_id, job.job_title, country.country_name, location.city, location.state, location.lat, location.lng) \
+                            .join(job, maintable.job_title_id == job.job_title_id) \
+                            .join(country, maintable.country_id == country.country_id) \
+                            .join(location, maintable.location_id == location.location_id)\
+                            .filter(job.job_title == "Machine Learning")\
+                            # .group_by(country.country_name).count()
 
 
-    dataset = []
-    for item in job_id: 
-        dataset.append(item)
+    # dataset = []
+    # for item in analyst_data: 
+    #     dataset.append(item)
 
+    analyst = []
+    for item in analyst_data: 
+        analyst.append(item)
+
+    scientist = []
+    for item in scientist_data: 
+        scientist.append(item)
+
+    engineer = []
+    for item in engineer_data: 
+        engineer.append(item)
+
+    ml = []
+    for item in ml_data: 
+        ml.append(item)        
 
     # Convert the query results to a dictionary 
-    output= {"output" : [dataset]}
+    output= {"Data Analyst" : [analyst],
+            "Data Scientist": [scientist],
+            "Data Engineer": [engineer],
+            "Machine Learning": [ml]
+            }
+
 
     return jsonify(output)
 
 
+# Query the database and send the jsonified results
+@app.route("/send", methods=["GET", "POST"])
+def send():
+    # if request.method == "POST":
+    #     name = request.form["petName"]
+    #     lat = request.form["petLat"]
+    #     lon = request.form["petLon"]
 
+    #     pet = Pet(name=name, lat=lat, lon=lon)
+    #     db.session.add(pet)
+    #     db.session.commit()
+    #     return redirect("/", code=302)
 
-
-
-
-
-
-
-
-
-
-
-# #     job_id = db.Column(db.job, primary_key=True)
-# #     # job_title_id = db.Column(db.String(64))
-
-
-# # Query the database and send the jsonified results
-# # @app.route("/send", methods=["GET", "POST"])
-# # def send():
-# #     if request.method == "POST":
-# #         name = request.form["petName"]
-# #         lat = request.form["petLat"]
-# #         lon = request.form["petLon"]
-
-# #         pet = Pet(name=name, lat=lat, lon=lon)
-# #         db.session.add(pet)
-# #         db.session.commit()
-# #         return redirect("/", code=302)
-
-# #     return render_template("form.html")
-
-
-# # HeapMap data
-# @app.route("/api/heatmap")
-# def heatmap():
-#     results = db.session.query(Data.job).all()
-
-#     # hover_text = [result[0] for result in results]
-#     # lat = [result[1] for result in results]
-#     # lon = [result[2] for result in results]
-
-#     job_data = [{
-#         "job_id": results.job_id,
-#         # "locationmode": "USA-states",
-#         # "lat": lat,
-#         # "lon": lon,
-#         # "text": hover_text,
-#         # "hoverinfo": "text",
-#         # "marker": {
-#         #     "size": 50,
-#         #     "line": {
-#         #         "color": "rgb(8,8,8)",
-#         #         "width": 1
-#         #     },
-#         }
-#     ]
-
-#     return jsonify(job_data)
-
+    return render_template("form.html")
 
 if __name__ == "__main__":
     app.run(debug = True)
