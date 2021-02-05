@@ -175,7 +175,7 @@ def summary():
                        
     
     # Get total counts of Data Scientist jobs
-    scientist_data = session.query(maintable.job_id, country.country_name, location.state)
+    scientist_data = session.query(maintable.job_id, country.country_name, location.state)\
                             .join(job, maintable.job_title_id == job.job_title_id) \
                             .join(country, maintable.country_id == country.country_id) \
                             .join(location, maintable.location_id == location.location_id)\
@@ -183,7 +183,7 @@ def summary():
                             # .group_by(country.country_name).count()
 
     # Get total counts of Data Engineer jobs
-    engineer_data = session.query(maintable.job_id, country.country_name, location.state)
+    engineer_data = session.query(maintable.job_id, country.country_name, location.state)\
                             .join(job, maintable.job_title_id == job.job_title_id) \
                             .join(country, maintable.country_id == country.country_id) \
                             .join(location, maintable.location_id == location.location_id)\
@@ -191,7 +191,7 @@ def summary():
                             # .group_by(country.country_name).count()
 
     # Get total counts of ML jobs
-    ml_data = session.query(maintable.job_id, country.country_name, location.state)
+    ml_data = session.query(maintable.job_id, country.country_name, location.state)\
                             .join(job, maintable.job_title_id == job.job_title_id) \
                             .join(country, maintable.country_id == country.country_id) \
                             .join(location, maintable.location_id == location.location_id)\
