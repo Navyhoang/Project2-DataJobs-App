@@ -1,0 +1,7 @@
+#heatmap {
+    width: 600px;
+    height:600px;
+    min-height: 100%;
+    min-width: 100%;
+    display: block;
+}

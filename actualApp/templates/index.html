@@ -9,6 +9,13 @@
 
   <!-- Reference Bootstrap -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+  <!-- Our CSS -->
+  <link rel="stylesheet" type="text/css" href="../static/css/style2.css">
+
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.3/dist/leaflet.css" integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ==" crossorigin="" />
+
 </head>
 
 <body>
@@ -27,9 +34,10 @@
     <div class="row">
       <!-- Dropdown menu -->
       <div class="col-md-2">
+
         <div class="well">
           <h5>Test Subject ID No.:</h5>
-          <select id="selDataset"></select>
+          <select id="selDataset"  onchange="optionChanged(this.value)"></select>
         </div>
 
 
@@ -40,6 +48,7 @@
           </div>
           <div id="sample-metadata" class="panel-body"></div>
         </div>
+
       </div>
 
       <!--Plot -->
@@ -54,42 +63,59 @@
         <p> /api/summary</p>
         <p> /send</p>
 
-        </div>
+      </div>
 
       <!-- Horizontal Bar Plot -->
       <div class="col-md-5">
-        <div id="bar"></div>
+        <div id="gauge-wellness"></div>
       </div>
 
       <!-- Gauge Chart -->
       <div class="col-md-5">
-        <div id="gauge"></div>
+        <div id="gauge-benefits"></div>
       </div>
     </div>
 
+    <!-- Bubble chart -->
     <div class="row">
-      <!-- Bubble chart -->
       <div class="col-md-12">
         <div id="bubble"></div>
       </div>
     </div>
+
   </div>
 
-  <!-- Link to d3.js -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.js"></script>
+  <div class="container">
+    <div class="row"> 
+      <div id="heatmap"></div>
+    </div>
+  </div>
+
+  <!-- API key -->
+  <script type="text/javascript" src="../static/js/config.js"></script>
+
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet@1.3.3/dist/leaflet.js" integrity="sha512-tAGcCfR4Sc5ZP5ZoVz0quoZDYX5aCtEm/eu1KhSLj2c9eFrylXZknQYmxUssFaVJKvvc0dJQixhGjG2yXWiV9Q==" crossorigin=""></script>
   
-  <!-- Link to Plotly -->
+  <!-- D3 CDN -->
+  <script src="https://d3js.org/d3.v6.min.js"></script>
+
+  <!-- Event Lister Code **NEED TO ADD** -->
+  <script type="text/javascript" src="../static/js/optionChanged.js"></script>
+
+  <!-- JS -->
+  <script type="text/javascript" src="../static/js/heatmap.js"></script>
+
+  <!-- Leaflet heatmap plugin *MUST BE AFTER HEATMAP JS FILE** -->
+  <script type="text/javascript" src="../static/js/leaflet-heat.js"></script>
+
+  <!-- Plotly plugin-->
   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-  
-  <!-- Link to app.js -->
-  <script src="./static/js/app.js"></script>
-  
-  <!-- Link to bonus.js -->
-  <!-- <script src="/static/js/bonus.js"></script> -->
-  
-  <!-- Link to json data sample -->
-  <!-- <script src="samples.json"></script> -->
-  
+
+  <!-- JS -->
+  <script type="text/javascript" src="../static/js/gauge.js"></script>
+
+
 </body>
 
 </html>
