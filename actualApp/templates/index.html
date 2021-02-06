@@ -72,20 +72,20 @@ Coded by www.creative-tim.com
           </li>
           <li>
             <a href="javascript:;">
-              <i class="nc-icon nc-pin-3"></i>
+              <i class="nc-icon nc-single-copy-04"></i>
               <p>Raw Data</p>
             </a>
           </li>
-          <li>
+          <li class="active-pro">
             <a href="javascript:;">
-              <i class="nc-icon nc-pin-3"></i>
+              <i class="nc-icon nc-badge"></i>
               <p>About</p>
             </a>
           </li>
         </ul>
       </div>
     </div>
-    <div class="main-panel" style="height: 100vh;">
+    <div class="main-panel">
       <!-- Navbar -->
       <nav class="navbar navbar-expand-lg navbar-absolute fixed-top navbar-transparent">
         <div class="container-fluid">
@@ -99,12 +99,14 @@ Coded by www.creative-tim.com
             </div>
             <a class="navbar-brand" href="javascript:;">Data Job Market Project</a>
           </div>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+          <!-- Following are search bar and notification toggle -->
+
+          <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-bar navbar-kebab"></span>
             <span class="navbar-toggler-bar navbar-kebab"></span>
             <span class="navbar-toggler-bar navbar-kebab"></span>
-          </button>
-          <div class="collapse navbar-collapse justify-content-end" id="navigation">
+          </button> -->
+          <!-- <div class="collapse navbar-collapse justify-content-end" id="navigation">
             <form>
               <div class="input-group no-border">
                 <input type="text" value="" class="form-control" placeholder="Search...">
@@ -130,30 +132,80 @@ Coded by www.creative-tim.com
                 </div>
               </li>
             </ul>
-          </div>
+          </div> -->
         </div>
       </nav>
       <!-- End Navbar -->
       <div class="content">
         <div class="row">
           <div class="col-md-12">
-            <h3 class="description">Your content here</h3>
+            <div class="card ">
+              <div class="card-header ">
+                <h5 class="card-title">Project Introduction</h5>
+                <p class="card-category">A brief introduction for this job market assessment analysis tool</p>
+              </div>
+              <div class="card-body ">
+                <p class="blockquote">
+                  "Data are becoming the new raw material of business."
+                  <br>
+                  <br>
+                  <small>
+                    – By Craig Mundie, Senior Advisor to the CEO at Microsoft
+                  </small>
+                </p>
+                <p>
+                  <h3>Background</h3>
+                  According to the LinkedIn Workforce Report in the USA, the demand for data related professions has
+                  multiplied six times compared to five years ago, and this growth will continue for the next five
+                  years <sup class="text-info">[1]</sup>. Therefore, people with data organization and analysis skills are highly in
+                  demand in the
+                  work force, and data related topics are currently the main innovation focus in many IT professionals
+                </p>
+                <p>
+                  <h3>Object</h3>
+                  This project focuses on the current job market for data related jobs in four different countries:
+                  The United States (US), Canada, Australia, and Singapore. Using the Extraction, Loading, Transformation (ETL)
+                  methodology, the project will extract all data related job postings from Indeed in these four countries,
+                  transform them, and load them into an SQL database. The project scope will include data analyst,
+                  data scientist, data engineer, and machine learning roles. Furthermore, this project also used the same
+                  ETL process to obtain the world’s university ranking data and mental health survey for further analysis
+                  on any possible relationships.
+                </p>
+                <p>
+                  With the job posting data stored on ElephantSQL, this web app uses JavaScript libraries, including <i class="text-primary">D3.js, Plotly 
+                  and Leaflet</i>, to visualize data through heatmaps, bar charts, bubble charts and tables. 
+                </p>
+              </div>
+              <div class="card-footer">
+                <hr>
+                <div class="typography-line">
+                  <p>
+                    <span>Reference</span>
+                    <b>[1]</b> Newsroom, "Data Analyst, the most in-demand job of the coming years," 2018 February 21. [Online]. 
+                    Available: 
+                    <a href="https://www.morningfuture.com/en/article/2018/02/21/data-analyst-data-scientist-big-data-work/235/">
+                      https://www.morningfuture.com/en/article/2018/02/21/data-analyst-data-scientist-big-data-work/235/
+                    </a>.
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-      <footer class="footer" style="position: absolute; bottom: 0; width: -webkit-fill-available;">
+      <footer class="footer footer-black  footer-white ">
         <div class="container-fluid">
           <div class="row">
             <nav class="footer-nav">
               <ul>
-                <li><a href="https://www.creative-tim.com" target="_blank">Creative Tim</a></li>
-                <li><a href="https://www.creative-tim.com/blog" target="_blank">Blog</a></li>
+                <li><a href="https://github.com/Navyhoang/Project2-DataJobs-App" target="_blank">Github Repo</a></li>
+                <li><a href="https://github.com/Navyhoang/" target="_blank">Thao Hoang</a></li>
                 <li><a href="https://www.creative-tim.com/license" target="_blank">Licenses</a></li>
               </ul>
             </nav>
             <div class="credits ml-auto">
               <span class="copyright">
-                © 2020, made with <i class="fa fa-heart heart"></i> by Creative Tim
+                Data Analytics & Visualization @ University of Toronto SCS
               </span>
             </div>
           </div>
@@ -173,7 +225,7 @@ Coded by www.creative-tim.com
   <!--  Notifications Plugin    -->
   <script src="./static/js/plugins/bootstrap-notify.js"></script>
   <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
-  <script src="./static/js/paper-dashboard.min.js?v=2.0.1" type="text/javascript"></script>
+  <script src="./static/js/paper-dashboard.js" type="text/javascript"></script>
 </body>
 
 </html>
