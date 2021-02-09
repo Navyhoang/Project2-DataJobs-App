@@ -229,6 +229,40 @@ def summary():
 
     return jsonify(output)
 
+@app.route("/api/keywords")
+def title_keywords():
+
+    # Data for job postings
+    titles_analyst = session.query(maintable.job_title)\
+                            .filter(maintable.job_title_id == 1).all()
+
+    titles_scientist = session.query(maintable.job_title)\
+                            .filter(maintable.job_title_id == 2).all()
+
+    titles_engineer = session.query(maintable.job_title)\
+                            .filter(maintable.job_title_id == 3).all()
+
+    titles_ml = session.query(maintable.job_title)\
+                            .filter(maintable.job_title_id == 4).all()
+
+    table = str.maketrans(dict.fromkeys('0123456789()[].,-/&!@#$+:–'))
+    list_analyst = []
+    for title in titles_analyst:
+        new_title = title[0].translate(table)
+        list_analyst += (new_title.split(" "))
+    
+    dict_analyst = {}
+    for item in list_analyst:
+        dict_analyst[item] = dict_analyst.get(item, 0) + 1
+
+    output_titles = {"Data Analyst": dict_analyst}
+
+    # title_freq = [title_list.count(w) for w in title_list]  # list comprehension
+
+
+
+    return jsonify(output_titles)
+
 
 # Query the database and send the jsonified results
 @app.route("/send", methods=["GET", "POST"])
