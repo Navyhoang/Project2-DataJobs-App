@@ -39,6 +39,15 @@ def main():
 
     )
 
+# FRONT_END ROUTE
+@app.route("/dashboard")
+def dashboard():
+    return (
+
+        render_template("dashboard.html")
+
+    )
+
 # SERVICE ROUTES
 
 #---------------------------------------------------------------------------------------
@@ -232,26 +241,33 @@ def summary():
 @app.route("/api/keywords")
 def title_keywords():
 
-    # Data for job postings
-    titles_analyst = session.query(maintable.job_title)\
-                            .filter(maintable.job_title_id == 1).all()
+    jobs_dict = {"Data Analyst" : 1,
+            "Data Scientist": 2,
+            "Data Engineer": 3,
+            "Machine Learning": 4}
 
-    titles_scientist = session.query(maintable.job_title)\
-                            .filter(maintable.job_title_id == 2).all()
+    def get_keywords_count(job_title_name):
+        # Getting values from database queries with job titles
+        query_titles = session.query(maintable.job_title)\
+                            .filter(maintable.job_title_id == jobs_dict[job_title_name]).all()
 
-    titles_engineer = session.query(maintable.job_title)\
-                            .filter(maintable.job_title_id == 3).all()
+        table = str.maketrans(dict.fromkeys('0123456789()[].,-/&!@#$+:–'))
 
-    titles_ml = session.query(maintable.job_title)\
-                            .filter(maintable.job_title_id == 4).all()
+        # Crete an empty list 
+        list_title = []
+        dict_analyst = {}
 
-    table = str.maketrans(dict.fromkeys('0123456789()[].,-/&!@#$+:–'))
+        for title in query_titles:
+            new_title = title[0].translate(table)
+            list_analyst += (new_title.split(" "))
+
+    
     list_analyst = []
     for title in titles_analyst:
         new_title = title[0].translate(table)
         list_analyst += (new_title.split(" "))
     
-    dict_analyst = {}
+    
     for item in list_analyst:
         dict_analyst[item] = dict_analyst.get(item, 0) + 1
 

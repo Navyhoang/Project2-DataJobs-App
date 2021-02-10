@@ -52,13 +52,13 @@ Coded by www.creative-tim.com
       </div>
       <div class="sidebar-wrapper">
         <ul class="nav">
-          <li class="active ">
-            <a href="javascript:;">
+          <li>
+            <a href="/">
               <i class="nc-icon nc-bank"></i>
               <p>Introduction</p>
             </a>
           </li>
-          <li>
+          <li class="active ">
             <a href="/dashboard">
               <i class="nc-icon nc-layout-11"></i>
               <p>Dashboard</p>
@@ -138,70 +138,32 @@ Coded by www.creative-tim.com
       <!-- End Navbar -->
       <div class="content">
         <div class="row">
-          <div class="col-md-12">
-            <div class="card ">
-              <div class="card-body ">
-                <div class="wordcloud">
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-md-12">
+          <div class="col-md-4">
             <div class="card ">
               <div class="card-header ">
-                <h5 class="card-title">Project Introduction</h5>
-                <p class="card-category">A brief introduction for this job market assessment analysis tool</p>
+                <h5 class="card-title">Email Statistics</h5>
+                <p class="card-category">Last Campaign Performance</p>
               </div>
               <div class="card-body ">
-                <p class="blockquote blockquote-primary">
-                  "Data are becoming the new raw material of business."
-                  <br>
-                  <br>
-                  <small>
-                    – By Craig Mundie, Senior Advisor to the CEO at Microsoft
-                  </small>
-                </p>
-                <p>
-                  <h3>Background</h3>
-                  According to the LinkedIn Workforce Report in the USA, the demand for data related professions has
-                  multiplied six times compared to five years ago, and this growth will continue for the next five
-                  years <sup class="text-info">[1]</sup>. Therefore, people with data organization and analysis skills are highly in
-                  demand in the
-                  work force, and data related topics are currently the main innovation focus in many IT professionals
-                </p>
-                <p>
-                  <h3>Object</h3>
-                  This project focuses on the current job market for data related jobs in four different countries:
-                  The United States (US), Canada, Australia, and Singapore. Using the Extraction, Loading, Transformation (ETL)
-                  methodology, the project will extract all data related job postings from Indeed in these four countries,
-                  transform them, and load them into an SQL database. The project scope will include data analyst,
-                  data scientist, data engineer, and machine learning roles. Furthermore, this project also used the same
-                  ETL process to obtain the world’s university ranking data and mental health survey for further analysis
-                  on any possible relationships.
-                </p>
-                <p>
-                  With the job posting data stored on ElephantSQL, this web app uses JavaScript libraries, including <i class="text-primary">D3.js, Plotly 
-                  and Leaflet</i>, to visualize data through heatmaps, bar charts, bubble charts and tables. 
-                </p>
+                <canvas id="chartEmail"></canvas>
               </div>
-              <div class="card-footer">
+              <div class="card-footer ">
+                <div class="legend">
+                  <i class="fa fa-circle text-primary"></i> Opened
+                  <i class="fa fa-circle text-warning"></i> Read
+                  <i class="fa fa-circle text-danger"></i> Deleted
+                  <i class="fa fa-circle text-gray"></i> Unopened
+                </div>
                 <hr>
-                <div class="typography-line">
-                  <p>
-                    <span>Reference</span>
-                    <b>[1]</b> Newsroom, "Data Analyst, the most in-demand job of the coming years," 2018 February 21. [Online]. 
-                    Available: 
-                    <a href="https://www.morningfuture.com/en/article/2018/02/21/data-analyst-data-scientist-big-data-work/235/">
-                      https://www.morningfuture.com/en/article/2018/02/21/data-analyst-data-scientist-big-data-work/235/
-                    </a>.
-                  </p>
+                <div class="stats">
+                  <i class="fa fa-calendar"></i> Number of emails sent
                 </div>
               </div>
             </div>
           </div>
         </div>
+
+        
       </div>
       <footer class="footer footer-black  footer-white ">
         <div class="container-fluid">
