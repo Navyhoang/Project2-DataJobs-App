@@ -81,14 +81,21 @@ d3.json("/api/wellness_programs").then( function(response) {
 
 
 
-function updateGauge(selectedCountry) {
+function updateGauge(countrySelected) {
 
-    console.log(`updated Gauge is reading: ${selectedCountry}`); 
+    //console.log(`updated Gauge is reading: ${countrySelected}`);
 
     d3.json("/api/benefits").then( function(response) {
 
         var actualResponse = response["Benefits"];
-        var countryList = actualResponse.filter(d => d[2] == selectedCountry)
+
+        if (countrySelected == "All") {
+            //console.log("country selected ALL!!");
+            var countryList = actualResponse}
+        else {
+            //console.log("country selected. filtering now!");
+            var countryList = actualResponse.filter(d => d[2] == countrySelected)}
+        
         var filteredList = countryList.filter(d => d[0] == "Yes");
         var count = Math.round(filteredList.length/countryList.length * 10)/10;
     
@@ -102,7 +109,14 @@ function updateGauge(selectedCountry) {
     d3.json("/api/wellness_programs").then( function(response) {
 
         var actualResponse = response["Wellness Program"];
-        var countryList = actualResponse.filter(d => d[2] == selectedCountry)
+
+        if (countrySelected == "All") {
+            //console.log("country selected ALL!!");
+            var countryList = actualResponse}
+        else {
+            //console.log("country selected. filtering now!");
+            var countryList = actualResponse.filter(d => d[2] == countrySelected)}
+        
         var filteredList = countryList.filter(d => d[0] == "Yes");
         var count = Math.round(filteredList.length/countryList.length * 10)/10;
     

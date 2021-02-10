@@ -8,5 +8,5 @@ function optionChanged(selectedCountry) {
     updateHeatmap(selectedCountry);
     //updateBubblechart(selectedCountry);
     //updateStackedbar(selectedCountry);
-    //updateSummary(selectedCountry);
+    updateSummary(selectedCountry);
 };
