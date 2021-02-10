@@ -5,7 +5,7 @@ d3.json("/api/leave").then((data) => {
 
     // Obtained the current country that is deciphered
     // var countrySelected = d3.select("#selDataset").text();
-    var countrySelected = "Canada";
+    var countrySelected = "United States";
 
     //Construct an array of record objects
     var leaveRecords = data.leave[0].map(item => {
@@ -26,7 +26,7 @@ d3.json("/api/leave").then((data) => {
             responseCounts[record.response] += 1;
         }
         else {
-            responseCounts[record.response] = 0;
+            responseCounts[record.response] = 1;
         }
     });
 
@@ -59,8 +59,8 @@ d3.json("/api/leave").then((data) => {
 
     const svg = d3.select("#bubble").append("svg")
         .attr("viewBox", [0, 0, width, height])
-        .attr("font-size", 7)
-        .attr("font-family", "Times New Roman")
+        //.attr("font-size", 14)
+        //.attr("font-family", "Times New Roman")
         .attr("text-anchor", "middle");
     
     console.log(root.leaves());
@@ -69,14 +69,15 @@ d3.json("/api/leave").then((data) => {
         .data(root.leaves())
         .enter()
         .append("g")
-          .attr("transform", d => `translate(${d.x + 1},${d.y + 1})`);
+        .attr("transform", d => `translate(${d.x + 1},${d.y + 1})`);
     
-    leaf.append("circle")
+    var circle = leaf.append("circle")
         // .attr("id", d => (d.leafUid = DOM.uid("leaf")).id)
         .attr("r", d => d.r)
         .attr("fill-opacity", 0.7)
         .attr("fill", "pink");
     
+   
     leaf.append("clipPath")
         // .attr("id", d => (d.clipUid = DOM.uid("clip")).id)
         .append("use");
@@ -85,10 +86,11 @@ d3.json("/api/leave").then((data) => {
     leaf.append("text")
         // .attr("clip-path", d => d.clipUid)
         .selectAll("tspan")
-        .data(d => d.data.response)
+        .data(d => {var temp = d.data.response.split(" ");
+                    return `${temp[0]} ${temp[1]}` })
         .enter().append("tspan")
         .attr("y", 0)
-        .attr("x", (d, i, nodes) => `${i - nodes.length / 2 + 0.8}em`)
+        .attr("x", (d, i, nodes) => `${i/1.5 - nodes.length / 2 + 2}em`)
         .text(d => d);
     
     leaf.append("title")
