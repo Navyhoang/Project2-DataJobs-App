@@ -255,21 +255,19 @@ def title_keywords():
 
         # Crete an empty list 
         list_title = []
-        dict_analyst = {}
+        dict_output = {}
 
         for title in query_titles:
             new_title = title[0].translate(table)
-            list_analyst += (new_title.split(" "))
+            list_title += (new_title.split(" "))
 
-    
-    list_analyst = []
-    for title in titles_analyst:
-        new_title = title[0].translate(table)
-        list_analyst += (new_title.split(" "))
-    
-    
-    for item in list_analyst:
-        dict_analyst[item] = dict_analyst.get(item, 0) + 1
+        for item in list_title:
+            if item != "":
+                dict_output[item] = dict_output.get(item, 0) + 1
+        
+        return dict_output
+
+    dict_analyst = get_keywords_count("Data Analyst")
 
     output_titles = {"Data Analyst": dict_analyst}
 
