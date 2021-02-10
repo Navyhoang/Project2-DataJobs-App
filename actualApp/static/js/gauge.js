@@ -17,7 +17,7 @@ d3.json("/api/benefits").then( function(response) {
     var filteredList = actualResponse.filter(d => d[0] == "Yes");
     var count = Math.round(filteredList.length/actualResponse.length * 10)/10;
 
-    var titleName = `% with Benefits (${actualResponse.length} surveys)`;
+    var titleName = `<b>% with Benefits</b> <br> (${actualResponse.length} surveys)`;
 
     var benefits_data = [
         {
@@ -55,7 +55,7 @@ d3.json("/api/wellness_programs").then( function(response) {
     var filteredList = actualResponse.filter(d => d[0] == "Yes");
     var count = Math.round(filteredList.length/actualResponse.length * 10)/10;
 
-    var titleName = `% with Wellness Programs (${actualResponse.length} surveys)`;
+    var titleName = `<b>% with Wellness Programs</b> <br> (${actualResponse.length} surveys)`;
 
     var wellness_data = [
         {
@@ -92,7 +92,7 @@ function updateGauge(selectedCountry) {
         var filteredList = countryList.filter(d => d[0] == "Yes");
         var count = Math.round(filteredList.length/countryList.length * 10)/10;
     
-        var newTitle = `% with Benefits (${countryList.length} surveys)`
+        var newTitle = `<b>% with Benefits</b> <br> (${countryList.length} surveys)`
         
         Plotly.restyle("gauge-benefits", "value", [count*100]); 
         Plotly.restyle("gauge-benefits", "title", [{text: newTitle}]);  
@@ -106,7 +106,7 @@ function updateGauge(selectedCountry) {
         var filteredList = countryList.filter(d => d[0] == "Yes");
         var count = Math.round(filteredList.length/countryList.length * 10)/10;
     
-        var newTitle = `% with Wellness Programs (${countryList.length} surveys)`
+        var newTitle = `<b>% with Wellness Programs</b> <br> (${countryList.length} surveys)`
         
         Plotly.restyle("gauge-wellness", "value", [count*100]); 
         Plotly.restyle("gauge-wellness", "title", [{text: newTitle}]);  
