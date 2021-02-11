@@ -241,39 +241,43 @@ def summary():
 @app.route("/api/keywords")
 def title_keywords():
 
+    # A list for all jobs
     jobs_dict = {"Data Analyst" : 1,
             "Data Scientist": 2,
             "Data Engineer": 3,
             "Machine Learning": 4}
 
+    # A function to count each job title keywords in the job name, return the list of frequencies
     def get_keywords_count(job_title_name):
         # Getting values from database queries with job titles
         query_titles = session.query(maintable.job_title)\
                             .filter(maintable.job_title_id == jobs_dict[job_title_name]).all()
 
-        table = str.maketrans(dict.fromkeys('0123456789()[].,-/&!@#$+:–'))
-
-        # Crete an empty list 
+        # Crete an empty list and a dict for frequency count
         list_title = []
         dict_output = {}
 
+        # Create a table (remove not desired charaters) for the translate later
+        table = str.maketrans(dict.fromkeys('0123456789()[].,-/&!@#$+:–'))
+
+        # For each title in the query result, 
+        # remove characters and append each keyword to the empty list
         for title in query_titles:
             new_title = title[0].translate(table)
             list_title += (new_title.split(" "))
 
+        # Count the frequency of each keyword in the list from above
         for item in list_title:
             if item != "":
                 dict_output[item] = dict_output.get(item, 0) + 1
         
         return dict_output
-
-    dict_analyst = get_keywords_count("Data Analyst")
-
-    output_titles = {"Data Analyst": dict_analyst}
-
-    # title_freq = [title_list.count(w) for w in title_list]  # list comprehension
-
-
+    
+    # Create an empty dict, iterate the title in jobs_dict to create a dict of results
+    output_titles = {}
+    for kw in jobs_dict:
+        # Assign function returned value to a new key
+        output_titles[kw] = get_keywords_count(kw)
 
     return jsonify(output_titles)
 

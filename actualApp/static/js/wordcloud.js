@@ -4,7 +4,7 @@
 
 d3.json("/api/keywords", function(keywordData) {
 
-    titleChoice = keywordData["Data Analyst"]
+    titleChoice = keywordData["Data Scientist"]
 
     var width = 750, height = 1000;
     var words = Object.entries(titleChoice).map(function ([key, value]) {
@@ -25,6 +25,7 @@ d3.json("/api/keywords", function(keywordData) {
     var fontScale = d3.scale.linear().domain([minSize, maxSize]).range([10, 150]);
 
     var fill = d3.scale.category20();
+
     d3.layout.cloud().size([width, height])
         .words(words)
         .font("Impact")
@@ -83,10 +84,10 @@ d3.json("/api/keywords", function(keywordData) {
         }
             
     }
+    
 
 
-
-
+// ================================================================
 
     // Encapsulate the word cloud functionality
     function wordCloud(selector) {
