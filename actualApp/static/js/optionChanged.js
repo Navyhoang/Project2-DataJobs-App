@@ -2,8 +2,9 @@
 
 function optionChanged(selectedCountry) {
 
-    console.log(selectedCountry);
+    //console.log(selectedCountry);
 
+    //initiating all other functions to update views 
     updateGauge(selectedCountry);
     updateHeatmap(selectedCountry);
     //updateBubblechart(selectedCountry);
