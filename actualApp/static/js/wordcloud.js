@@ -5,6 +5,7 @@
 d3.json("/api/keywords", function(keywordData) {
 
     titleChoice = keywordData["Data Analyst"]
+
     var width = 750, height = 1000;
     var words = Object.entries(titleChoice).map(function ([key, value]) {
         if (value > 2) {
@@ -17,7 +18,6 @@ d3.json("/api/keywords", function(keywordData) {
     }).filter(d => d);
 
     console.log(words)
-    var arrayToBeHighlight = ["salmon", "prey"];
 
     maxSize = d3.max(words, function (d) { return d.size; });
     minSize = d3.min(words, function (d) { return d.size; });
@@ -25,9 +25,12 @@ d3.json("/api/keywords", function(keywordData) {
     var fontScale = d3.scale.linear().domain([minSize, maxSize]).range([10, 150]);
 
     var fill = d3.scale.category20();
-    d3.layout.cloud().size([width, height]).words(words).font("Impact")
+    d3.layout.cloud().size([width, height])
+        .words(words)
+        .font("Impact")
         .fontSize(function (d) { return fontScale(d.size) })
-        .on("end", drawCloud).start();
+        .on("end", drawCloud)
+        .start();
 
     // Draw the word cloud
     function drawCloud(words) {
@@ -67,8 +70,20 @@ d3.json("/api/keywords", function(keywordData) {
             .style("fill-opacity", 1e-6)
             .attr('font-size', 1)
             .remove();
+        
+        return {
+            refresh: function (words) {
+                d3.layout.cloud().size([width, height])
+                .words(words)
+                .font("Impact")
+                .fontSize(function (d) { return fontScale(d.size) })
+                .on("end", drawCloud)
+                .start();
+            }
+        }
             
     }
+
 
 
 
