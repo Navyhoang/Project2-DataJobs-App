@@ -6,7 +6,7 @@ d3.json("/api/keywords", function(keywordData) {
 
     titleChoice = keywordData["Data Scientist"]
 
-    var width = 750, height = 1000;
+    var width = 800, height = 400;
     var words = Object.entries(titleChoice).map(function ([key, value]) {
         if (value > 2) {
             if (key == "Analyst") {
