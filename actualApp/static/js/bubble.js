@@ -45,8 +45,8 @@ d3.json("/api/leave").then((data) => {
     });
 
 
-    var format = d3.format(",d");
-    var color = d3.scaleOrdinal(allCounts.map(d => d.key), d3.schemeCategory20)
+    // var format = d3.format(",d");
+    // var color = d3.scaleOrdinal(allCounts.map(d => d.key), d3.schemeCategory20)
     var width = 450;
     var height = 450;
     var pack = (data) => d3.pack()

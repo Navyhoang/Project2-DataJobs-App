@@ -120,7 +120,7 @@ function updateGauge(countrySelected) {
         var filteredList = countryList.filter(d => d[0] == "Yes");
         var count = Math.round(filteredList.length/countryList.length * 10)/10;
     
-        var newTitle = `<b>% with Benefits</b> <br> (${countryList.length} surveys)`
+        var newTitle = `(${countryList.length} surveys)`
         
         //update title and values
         Plotly.restyle("gauge-benefits", "value", [count*100]); 
@@ -144,7 +144,7 @@ function updateGauge(countrySelected) {
         var filteredList = countryList.filter(d => d[0] == "Yes");
         var count = Math.round(filteredList.length/countryList.length * 10)/10;
     
-        var newTitle = `<b>% with Wellness Programs</b> <br> (${countryList.length} surveys)`
+        var newTitle = `(${countryList.length} surveys)`
         
         //update title and values
         Plotly.restyle("gauge-wellness", "value", [count*100]); 
