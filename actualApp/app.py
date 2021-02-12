@@ -54,7 +54,7 @@ def dashboard():
 # HEAT MAP - JOB POSTINGS and UNIVERSITY MARKERS
 #---------------------------------------------------------------------------------------
 @app.route("/api/jobs")
-def heatmap():
+def heatmap(): 
 
     # Dataa for job postings
     job_data = session.query(maintable.job_id, job.job_title, country.country_name, location.city, location.state, location.lat, location.lng) \
