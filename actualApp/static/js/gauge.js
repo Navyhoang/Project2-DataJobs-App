@@ -1,8 +1,10 @@
-//set layout for all gauge views
+//set layout for %all gauge views
 var layout = { 
-    width: 400, 
-    height: 400, 
-    margin: { t: 0, b: 0 } 
+    // width: 300,
+    // height: 300,
+    margin: { t: 0, b: 0 },
+    autosize: true,
+    automargin: true
 };
 
         
@@ -21,7 +23,7 @@ d3.json("/api/benefits").then( function(response) {
     var count = Math.round(filteredList.length/actualResponse.length * 10)/10;
 
     //title for gauge chart - to include total responses
-    var titleName = `<b>% with Benefits</b> <br> (${actualResponse.length} surveys)`;
+    var titleName = `(${actualResponse.length} surveys)`;
 
     //setting up data into the plotly gauge format
     var benefits_data = [
@@ -30,7 +32,7 @@ d3.json("/api/benefits").then( function(response) {
                 x: [0, 1], 
                 y: [0, 1] },
             value: count*100,
-            title: { text: titleName },
+            title: { text: titleName, font: {size: 12}},
             type: "indicator",
             mode: "gauge+number",
             gauge: {
@@ -43,8 +45,11 @@ d3.json("/api/benefits").then( function(response) {
         }
     ];
 
+    var config = {responsive: true}
+
+
     //adding plot in tag in index.html 
-    Plotly.newPlot('gauge-benefits', benefits_data, layout);
+    Plotly.newPlot('gauge-benefits', benefits_data, layout, config);
 
 
 });
@@ -65,7 +70,7 @@ d3.json("/api/wellness_programs").then( function(response) {
     var count = Math.round(filteredList.length/actualResponse.length * 10)/10;
 
     //title for gauge chart - to include total responses
-    var titleName = `<b>% with Wellness Programs</b> <br> (${actualResponse.length} surveys)`;
+    var titleName = `(${actualResponse.length} surveys)`;
 
     //setting up data into the plotly gauge format
     var wellness_data = [
@@ -74,7 +79,7 @@ d3.json("/api/wellness_programs").then( function(response) {
                 x: [0, 1], 
                 y: [0, 1] },
             value: count*100,
-            title: { text: titleName},
+            title: { text: titleName, font: {size: 12}},
             type: "indicator",
             mode: "gauge+number",
             gauge: {
@@ -89,6 +94,8 @@ d3.json("/api/wellness_programs").then( function(response) {
 
     //adding plot in tag in index.html 
     Plotly.newPlot('gauge-wellness', wellness_data, layout);
+
+
 });
 
 
