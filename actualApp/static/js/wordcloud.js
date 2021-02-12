@@ -5,12 +5,15 @@
 d3.json("/api/keywords", function(keywordData) {
 
     titleChoice = keywordData["Data Scientist"]
+    scaled_list = ["analyst", "data", "scientist"]
 
-    var width = 800, height = 400;
+    var width = 800, height = 500;
     var words = Object.entries(titleChoice).map(function ([key, value]) {
         if (value > 2) {
-            if (key == "Analyst") {
-                return { text: key, size: value/2};
+            // Check if the key matches the filter list
+            if (scaled_list.indexOf(key) >= 0) {
+                console.log(key, value);
+                return { text: key, size: value/3};
             } else {
                 return { text: key, size: value };
             }
@@ -18,7 +21,7 @@ d3.json("/api/keywords", function(keywordData) {
     }).filter(d => d);
 
     console.log(words)
-
+    
     maxSize = d3.max(words, function (d) { return d.size; });
     minSize = d3.min(words, function (d) { return d.size; });
 
@@ -39,6 +42,8 @@ d3.json("/api/keywords", function(keywordData) {
         var cloud = d3.select(".wordcloud").append("svg")
             .attr("width", width)
             .attr("height", height)
+            .style('width', '100%')
+            // .style('height', 'auto')
             .append("g")
             .attr("transform", "translate(" + (width / 2) + "," + (height / 2) + ")")
             .selectAll("text")
@@ -52,6 +57,7 @@ d3.json("/api/keywords", function(keywordData) {
                 return fill(i);
             })
             .attr("text-anchor", "middle")
+            .style("fill-opacity", 1e-6)
             .attr("font-size", 1)
             .text(function (d) { return d.text; });
 
@@ -76,6 +82,7 @@ d3.json("/api/keywords", function(keywordData) {
             refresh: function (words) {
                 d3.layout.cloud().size([width, height])
                 .words(words)
+                .padding(50)
                 .font("Impact")
                 .fontSize(function (d) { return fontScale(d.size) })
                 .on("end", drawCloud)
