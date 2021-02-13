@@ -4,7 +4,7 @@
 
 d3.json("/api/keywords", function(keywordData) {
 
-    titleChoice = keywordData["Data Scientist"]
+    titleChoice = keywordData["Data Analyst"]
     scaled_list = ["analyst", "data", "scientist"]
 
     var width = 800, height = 500;
@@ -13,7 +13,7 @@ d3.json("/api/keywords", function(keywordData) {
             // Check if the key matches the filter list
             if (scaled_list.indexOf(key) >= 0) {
                 console.log(key, value);
-                return { text: key, size: value/3};
+                return { text: key, size: value/2};
             } else {
                 return { text: key, size: value };
             }
@@ -82,7 +82,7 @@ d3.json("/api/keywords", function(keywordData) {
             refresh: function (words) {
                 d3.layout.cloud().size([width, height])
                 .words(words)
-                .padding(50)
+                .padding(5)
                 .font("Impact")
                 .fontSize(function (d) { return fontScale(d.size) })
                 .on("end", drawCloud)
