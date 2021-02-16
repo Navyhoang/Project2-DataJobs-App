@@ -7,7 +7,7 @@ function optionChanged(selectedCountry) {
     //initiating all other functions to update views 
     updateGauge(selectedCountry);
     updateHeatmap(selectedCountry);
-    //updateBubblechart(selectedCountry);
+    updateBubblechart(selectedCountry);
     //updateStackedbar(selectedCountry);
     updateSummary(selectedCountry);
 };
