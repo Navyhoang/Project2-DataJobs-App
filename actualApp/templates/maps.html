@@ -32,7 +32,10 @@ Coded by www.creative-tim.com
   <link href="./static/css/paper-dashboard.css?v=2.0.1" rel="stylesheet" />
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="./static/css/style2.css" rel="stylesheet" />
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.3/dist/leaflet.css" integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ==" crossorigin="" />
 </head>
+
 
 <body class="">
   <div class="wrapper ">
@@ -52,7 +55,7 @@ Coded by www.creative-tim.com
       </div>
       <div class="sidebar-wrapper">
         <ul class="nav">
-          <li class="active ">
+          <li>
             <a href="/">
               <i class="nc-icon nc-bank"></i>
               <p>Introduction</p>
@@ -64,7 +67,7 @@ Coded by www.creative-tim.com
               <p>Dashboard</p>
             </a>
           </li>
-          <li>
+          <li class="active ">
             <a href="/maps">
               <i class="nc-icon nc-pin-3"></i>
               <p>Maps</p>
@@ -91,8 +94,6 @@ Coded by www.creative-tim.com
         </ul>
       </div>
     </div>
-
-
     <div class="main-panel">
       <!-- Navbar -->
       <nav class="navbar navbar-expand-lg navbar-absolute fixed-top navbar-transparent">
@@ -108,6 +109,10 @@ Coded by www.creative-tim.com
             <a class="navbar-brand" href="#">Data Job Market Project</a>
           </div>
           <!-- Following are search bar and notification toggle -->
+
+          <div class="well">
+            <select id="selDataset"  onchange="optionChanged(this.value)"></select>
+          </div>
 
           <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-bar navbar-kebab"></span>
@@ -143,74 +148,35 @@ Coded by www.creative-tim.com
           </div> -->
         </div>
       </nav>
+
+      
       <!-- End Navbar -->
+
+      <!-- Add 4 visuals in this container -->
       <div class="content">
-        <!-- <div class="row">
-          <div class="col-md-12">
-            <div class="card ">
-              <div class="card-body ">
-                <div class="wordcloud">
-              </div>
-            </div>
-          </div>
-        </div> -->
 
         <div class="row">
-          <div class="col-md-12">
-            <div class="card ">
+          <!-- Heat Map-->
+          <div class= "col-lg-12 col-md-12 col-sm-12">
+            <div class="card">
               <div class="card-header ">
-                <h5 class="card-title">Project Introduction</h5>
-                <p class="card-category">A brief introduction for this job market assessment analysis tool</p>
+                <h5 class="card-title">Map View of Data Jobs Postings</h5>
               </div>
-              <div class="card-body ">
-                <p class="blockquote blockquote-primary">
-                  "Data are becoming the new raw material of business."
-                  <br>
-                  <br>
-                  <small>
-                    – By Craig Mundie, Senior Advisor to the CEO at Microsoft
-                  </small>
-                </p>
-                <p>
-                  <h3>Background</h3>
-                  According to the LinkedIn Workforce Report in the USA, the demand for data related professions has
-                  multiplied six times compared to five years ago, and this growth will continue for the next five
-                  years <sup class="text-info">[1]</sup>. Therefore, people with data organization and analysis skills are highly in
-                  demand in the
-                  work force, and data related topics are currently the main innovation focus in many IT professionals
-                </p>
-                <p>
-                  <h3>Object</h3>
-                  This project focuses on the current job market for data related jobs in four different countries:
-                  The United States (US), Canada, Australia, and Singapore. Using the Extraction, Loading, Transformation (ETL)
-                  methodology, the project will extract all data related job postings from Indeed in these four countries,
-                  transform them, and load them into an SQL database. The project scope will include data analyst,
-                  data scientist, data engineer, and machine learning roles. Furthermore, this project also used the same
-                  ETL process to obtain the world’s university ranking data and mental health survey for further analysis
-                  on any possible relationships.
-                </p>
-                <p>
-                  With the job posting data stored on ElephantSQL, this web app uses JavaScript libraries, including <i class="text-primary">D3.js, Plotly 
-                  and Leaflet</i>, to visualize data through heatmaps, bar charts, bubble charts and tables. 
-                </p>
+
+              <div class="card-body">
+                <div id="heatmap" class="map"></div>
               </div>
-              <div class="card-footer">
-                <hr>
-                <div class="typography-line">
-                  <p>
-                    <span>Reference</span>
-                    <b>[1]</b> Newsroom, "Data Analyst, the most in-demand job of the coming years," 2018 February 21. [Online]. 
-                    Available: 
-                    <a href="https://www.morningfuture.com/en/article/2018/02/21/data-analyst-data-scientist-big-data-work/235/">
-                      https://www.morningfuture.com/en/article/2018/02/21/data-analyst-data-scientist-big-data-work/235/
-                    </a>.
-                  </p>
-                </div>
-              </div>
+
             </div>
           </div>
         </div>
+
       </div>
+
+
+
+        
+      
       <footer class="footer footer-black  footer-white ">
         <div class="container-fluid">
           <div class="row">
@@ -233,9 +199,7 @@ Coded by www.creative-tim.com
         </div>
       </footer>
     </div>
-
   </div>
-  
   <!--   Core JS Files   -->
   <script src="./static/js/core/jquery.min.js"></script>
   <script src="./static/js/core/popper.min.js"></script>
@@ -250,7 +214,26 @@ Coded by www.creative-tim.com
   <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="./static/js/paper-dashboard.js" type="text/javascript"></script>
   <!-- D3 and Wordcloud Plugin -->
-  <script src="https://d3js.org/d3.v3.min.js"></script>
+  <script src="https://d3js.org/d3.v6.min.js"></script>
+  <!-- <script src="./static/js/plugins/d3.layout.cloud.js"></script> -->
+  <!-- <script type="text/javascript" src="./static/js/wordcloud.js"></script> -->
+  <!-- API key -->
+  <script type="text/javascript" src="../static/js/config.js"></script>
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet@1.3.3/dist/leaflet.js" integrity="sha512-tAGcCfR4Sc5ZP5ZoVz0quoZDYX5aCtEm/eu1KhSLj2c9eFrylXZknQYmxUssFaVJKvvc0dJQixhGjG2yXWiV9Q==" crossorigin=""></script>
+  <!-- Event Lister Code **NEED TO ADD** -->
+  <script type="text/javascript" src="../static/js/optionChanged.js"></script>
+  <!-- Plotly plugin-->
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  
+
+  <!-- Heat Map JS -->
+  <script type="text/javascript" src="../static/js/heatmap.js"></script>
+  <!-- Leaflet heatmap plugin *MUST BE AFTER HEATMAP JS FILE** -->
+  <script type="text/javascript" src="../static/js/leaflet-heat.js"></script>
+
+
+  
 </body>
 
 </html>

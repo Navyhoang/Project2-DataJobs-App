@@ -39,12 +39,30 @@ def main():
 
     )
 
-# FRONT_END ROUTE
+# Dashboard ROUTE
 @app.route("/dashboard")
 def dashboard():
     return (
 
         render_template("dashboard.html")
+
+    )
+
+# Maps ROUTE
+@app.route("/maps")
+def maps():
+    return (
+
+        render_template("maps.html")
+
+    )
+
+# Word Cloud ROUTE
+@app.route("/wordcloud")
+def wordcloud():
+    return (
+
+        render_template("wordcloud.html")
 
     )
 
@@ -258,13 +276,14 @@ def title_keywords():
         dict_output = {}
 
         # Create a table (remove not desired charaters) for the translate later
-        table = str.maketrans(dict.fromkeys('0123456789()[].,-/&!@#$+:–'))
+        table = str.maketrans(dict.fromkeys('0123456789()[].,-/&!@#$+:–\\'))
 
-        # For each title in the query result, 
+        # For each title (lowercased) in the query result, 
         # remove characters and append each keyword to the empty list
         for title in query_titles:
-            new_title = title[0].translate(table)
+            new_title = title[0].lower().translate(table)
             list_title += (new_title.split(" "))
+
 
         # Count the frequency of each keyword in the list from above
         for item in list_title:
