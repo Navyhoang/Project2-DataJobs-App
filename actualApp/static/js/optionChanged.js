@@ -8,6 +8,6 @@ function optionChanged(selectedCountry) {
     updateGauge(selectedCountry);
     updateHeatmap(selectedCountry);
     //updateBubblechart(selectedCountry);
-    //updateStackedbar(selectedCountry);
+    updateStackedbar(selectedCountry);
     updateSummary(selectedCountry);
 };
