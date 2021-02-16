@@ -39,12 +39,30 @@ def main():
 
     )
 
-# FRONT_END ROUTE
+# Dashboard ROUTE
 @app.route("/dashboard")
 def dashboard():
     return (
 
         render_template("dashboard.html")
+
+    )
+
+# Maps ROUTE
+@app.route("/maps")
+def maps():
+    return (
+
+        render_template("maps.html")
+
+    )
+
+# Word Cloud ROUTE
+@app.route("/wordcloud")
+def wordcloud():
+    return (
+
+        render_template("wordcloud.html")
 
     )
 
