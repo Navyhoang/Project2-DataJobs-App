@@ -17,5 +17,8 @@ function optionChanged(selectedCountry) {
 
     try {updateSummary(selectedCountry);}
         catch(err) {};
+
+    try {updateRawdata(selectedCountry);}
+        catch(err) {};
    
 };

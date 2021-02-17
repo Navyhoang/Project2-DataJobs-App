@@ -3,6 +3,8 @@
 
 function dropdownMenu() {
 
+    console.log("HEREEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE")
+
     //creating all options 
     var titleNames = ["Data Analyst", "Data Scientist", "Data Engineer", "Machine Learning"];
 
@@ -128,6 +130,7 @@ d3.json("/api/keywords", function(keywordData) {
     // Populate the dropdown menu
     dropdownMenu();
     dropdownFreq();
+
     // Get drop down menu value
     var selectedTitle = d3.select("#selTitle")
     var selectedFreq = d3.select("#selFreq")
