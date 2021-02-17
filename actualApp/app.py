@@ -66,6 +66,15 @@ def wordcloud():
 
     )
 
+# Word Cloud ROUTE
+@app.route("/rawdata")
+def rawdata():
+    return (
+
+        render_template("rawdata.html")
+
+    )
+
 # SERVICE ROUTES
 
 #---------------------------------------------------------------------------------------
@@ -94,7 +103,7 @@ def heatmap():
 @app.route("/api/instituitions")
 def instituitions():
 
-    # Dataa for job postings
+    # Data for job postings
     instituition_data = session.query(instituition.institution, country.country_name)\
                         .join(country, instituition.country_id == country.country_id).all()
 

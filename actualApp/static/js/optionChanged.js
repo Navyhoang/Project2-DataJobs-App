@@ -1,14 +1,21 @@
-//Function to trigger all updates
+// Function to trigger all updates
 
 function optionChanged(selectedCountry) {
 
-    //console.log(selectedCountry);
+    // Catch errors
+    try {updateGauge(selectedCountry);}
+      catch(err) {};
 
-    //initiating all other functions to update views 
-    updateGauge(selectedCountry);
-    updateHeatmap(selectedCountry);
+    try {updateHeatmap(selectedCountry);}
+      catch(err) {};
+    
+    try {updateBubblechart(selectedCountry);}
+        catch(err) {};
 
-    updateBubblechart(selectedCountry);
-    updateStackedbar(selectedCountry);
-    updateSummary(selectedCountry);
+    try {pdateStackedbar(selectedCountry);}
+        catch(err) {};
+
+    try {updateSummary(selectedCountry);}
+        catch(err) {};
+   
 };
