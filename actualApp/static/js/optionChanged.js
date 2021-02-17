@@ -12,7 +12,7 @@ function optionChanged(selectedCountry) {
     try {updateBubblechart(selectedCountry);}
         catch(err) {};
 
-    try {pdateStackedbar(selectedCountry);}
+    try {updateStackedbar(selectedCountry);}
         catch(err) {};
 
     try {updateSummary(selectedCountry);}

@@ -79,7 +79,7 @@ function updateStackedbar(countrySelected) {
             .range([0, width]);
         var z = d3.scaleOrdinal()
             .domain(allTitles)
-            .range(["#98abc5", "#7b6888", "#a05d56", "#ff8c00"]);
+            .range(["#f9d5e5", "#eeac99", "#e06377", "#c83349"]);
 
         // Added the stacked bar charts onto the svg
         g.append("g")
