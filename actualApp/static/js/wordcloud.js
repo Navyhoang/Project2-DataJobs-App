@@ -3,8 +3,6 @@
 
 function dropdownMenu() {
 
-    console.log("HEREEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE")
-
     //creating all options 
     var titleNames = ["Data Analyst", "Data Scientist", "Data Engineer", "Machine Learning"];
 
