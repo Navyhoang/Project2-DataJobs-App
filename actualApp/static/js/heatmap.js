@@ -51,8 +51,8 @@ var baseMaps = {
 
 // Modify the map so that it will have the streetmap, states, and cities layers
 var myMap = L.map("heatmap", {
-  center: [37.09, -95.71],
-  zoom: 5,
+  center: [0,0],
+  zoom: 2,
   layers: [streetmap] //default layers
 });
 
@@ -111,7 +111,7 @@ function updateHeatmap(countrySelected) {
   else if (countrySelected == "United States") {centerPoint = [37.0902, -95.7129];}
   else if (countrySelected == "Australia") {centerPoint = [-25.2744, 133.7751];}
   else if (countrySelected == "Singapore") {centerPoint = [1.3521, 103.8198];}
-  else if (countrySelected == "All") {centerPoint = [0,0];}
+  else if (countrySelected == "All") {centerPoint = [0,0]; myMap.setView(centerPoint,2)}
 
   //myMap.panTo(new L.LatLng(centerPoint[0], centerPoint[1]));
   myMap.setView(centerPoint, 4);
