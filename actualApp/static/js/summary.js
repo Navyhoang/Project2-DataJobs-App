@@ -59,9 +59,6 @@ function updateSummary(countrySelected) {
             else if (key == "Machine Learning") {textStyle = "warning"; pieColor.push('#fcc468')}
             else {textStyle = "danger"; pieColor.push('#ef8157')}
 
-            // card.append().html( 
-            //     `<div id="sample-metadata" class="panel-body"> ${key} Roles: ${summary[key]}</div>`
-            // );
             legend.append().html(
                 `<i class="fa fa-circle text-${textStyle}"></i> ${key}: ${summary[key]}<br>`
             )
@@ -81,12 +78,6 @@ function updateSummary(countrySelected) {
                 pointRadius: 0,
                 pointHoverRadius: 0,
                 backgroundColor: pieColor,
-                // [
-                //   '#e3e3e3', //gray
-                //   '#4acccd', //primary
-                //   '#fcc468', //warning
-                //   '#ef8157' //danger
-                // ],
                 borderWidth: 0,
                 data: pieData
               }]
