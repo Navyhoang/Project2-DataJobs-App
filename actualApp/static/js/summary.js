@@ -47,7 +47,7 @@ function updateSummary(countrySelected) {
         //updating data into dashboard
 
         //adding total job postings
-        card.html(`<p> Total Job Postings: ${filteredList.length} <p>`)
+        card.html(`<p> Total Job Postings for <b>${countrySelected}</b>: ${filteredList.length}<p>`)
         
         // A list for pie chart data
         pieData = []
@@ -129,8 +129,7 @@ function updateSummary(countrySelected) {
           });
     });
 
-
-}
+};
 
 // Default page for summary
 updateSummary("All");

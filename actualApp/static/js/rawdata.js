@@ -26,10 +26,10 @@ table.html(" ");
 
 d3.json("/api/jobs").then( function(response) {
 
-    var jobPost = response["jobs"];
+    var jobPost = response["jobs"][0].slice(0,50);
     
     //counting jobs by type of role (e.g. 1000 postings for job analyst roles)
-    jobPost[0].forEach(function(report) {
+    jobPost.forEach(function(report) {
         
         var row = table.append("tr");
 
