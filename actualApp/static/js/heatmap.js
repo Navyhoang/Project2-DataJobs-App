@@ -19,10 +19,41 @@ function dropdownMenu() {
 
 dropdownMenu();
 
-//default map
+
+// Streetmap Layer
+var streetmap = L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
+  attribution: "© <a href='https://www.mapbox.com/about/maps/'>Mapbox</a> © <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a> <strong><a href='https://www.mapbox.com/map-feedback/' target='_blank'>Improve this map</a></strong>",
+  tileSize: 512,
+  maxZoom: 18,
+  zoomOffset: -1,
+  id: "mapbox/streets-v11",
+  accessToken: API_KEY
+});
+
+var darkmap = L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
+  maxZoom: 18,
+  id: "mapbox/dark-v10",
+  accessToken: API_KEY
+})
+
+var lightmap = L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
+  maxZoom: 18,
+  id: "mapbox/light-v10",
+  accessToken: API_KEY
+})
+
+var baseMaps = {
+  Street: streetmap, 
+  Light: lightmap, 
+  Dark: darkmap
+};
+
+
+// Modify the map so that it will have the streetmap, states, and cities layers
 var myMap = L.map("heatmap", {
-  center: [0,0],
-  zoom: 2
+  center: [37.09, -95.71],
+  zoom: 5,
+  layers: [streetmap] //default layers
 });
 
 //adding tile layer to map
@@ -34,6 +65,9 @@ L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
   id: "mapbox/streets-v11",
   accessToken: API_KEY
 }).addTo(myMap);
+
+// Create a layer control, containing our baseMaps, and add them to the map
+L.control.layers(baseMaps).addTo(myMap);
 
 //reading JSON with data
 d3.json("/api/jobs").then( function(response) {
@@ -66,7 +100,6 @@ d3.json("/api/jobs").then( function(response) {
   }).addTo(myMap);
 
 });
-
 
 //recenter map based on country selected
 function updateHeatmap(countrySelected) {
