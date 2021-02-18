@@ -58,7 +58,7 @@ function updateBubblechart(selectedCountry) {
             .attr("viewBox", [0, 0, width, height])
             .attr("text-anchor", "middle");
         
-        console.log(root.leaves());
+        // console.log(root.leaves());
         
         const leaf = svg.selectAll("g")
             .data(root.leaves())
