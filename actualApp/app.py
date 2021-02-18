@@ -66,12 +66,21 @@ def wordcloud():
 
     )
 
-# Word Cloud ROUTE
+# Raw Data ROUTE
 @app.route("/rawdata")
 def rawdata():
     return (
 
         render_template("rawdata.html")
+
+    )
+
+# About ROUTE
+@app.route("/about")
+def about():
+    return (
+
+        render_template("about.html")
 
     )
 

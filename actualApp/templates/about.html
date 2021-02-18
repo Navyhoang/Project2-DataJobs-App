@@ -61,7 +61,7 @@ Coded by www.creative-tim.com
               <p>Introduction</p>
             </a>
           </li>
-          <li class="active ">
+          <li>
             <a href="/dashboard">
               <i class="nc-icon nc-layout-11"></i>
               <p>Dashboard</p>
@@ -85,7 +85,7 @@ Coded by www.creative-tim.com
               <p>Raw Data</p>
             </a>
           </li>
-          <li class="active-pro">
+          <li class="active-pro active">
             <a href="/about">
               <i class="nc-icon nc-badge"></i>
               <p>About</p>
@@ -116,124 +116,36 @@ Coded by www.creative-tim.com
 
         </div>
       </nav>
+
+      
       <!-- End Navbar -->
 
       <!-- Add 4 visuals in this container -->
       <div class="content">
-        <div class="row">
-
-          <!-- Summary Card-->
-          <div class= "col-lg-4 col-md-4 col-sm-12">
-            <div class="card ">
-              <div class="card-header ">
-                <h5 class="card-title">Summary</h5>
-                <p class="card-category">Data Jobs Counts</p>
-              </div>
-              <div class="card-body ">
-                <div id="sample-metadata"></div>
-                <div id="canvas">
-                  <canvas id="pie-sample"></canvas>
-                </div>
-              </div>
-              <div class="card-footer ">
-                <div class="legend">
-                  <!-- <i class="fa fa-circle text-primary"></i> Data Analyst <br>
-                  <i class="fa fa-circle text-warning"></i> Data Scientist <br>
-                  <i class="fa fa-circle text-danger"></i> Data Engineer <br>
-                  <i class="fa fa-circle text-gray"></i> Machine Learning Engineer -->
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Gauges -->
-          <div class= "col-lg-4 col-md-4 col-sm-12">
-            <div class="card ">
-
-              <div class="card-header ">
-                <h5 class="card-title">% with wellness program</h5>
-                <!-- <p class="card-category"> % with wellness program </p> -->
-              </div>
-
-              <div class="card-body ">
-
-                <!-- Gauge 1 -->
-                <div id="gauge-wellness" style="height: 250px" ></div>
-  
-              </div>
-            </div>
-              
-          </div>
-
-          <div class= "col-lg-4 col-md-4 col-sm-12">
-            <div class="card ">
-
-              <div class="card-header ">
-                <h5 class="card-title">% with work benefits</h5>
-                <!-- <p class="card-category"> % with wellness program </p> -->
-
-              </div>
-
-              <div class="card-body ">
-
-                <div id="gauge-benefits" style="height: 250px"></div>
-  
-              </div>
-            </div>
-              
-          </div>
-        </div>
-
-        <div class="row">
-
-          <!-- Bubble Chart-->
-
-          <div class= "col-lg-4 col-md-4 col-sm-12">
-            <div class="card ">
-
-              <div class="card-header ">
-                <h5 class="card-title">Leave Benefits</h5>
-                <p class="card-category">Ease To Take Leaves</p>
-              </div>
-
-              <div id="bubble">
-                <div class="container">
-                  <p>Add Bubble Chart</p>
-                </div>
-              </div>
-              
-            </div>
-          </div>
-
-          <!-- Stacked Bar-->
-          <div class= "col-lg-8 col-md-8 col-sm-12">
-            <div class="card ">
-              <div class="card-header ">
-                <h5 class="card-title">Jobs Count by Province</h5>
-              </div>
-
-              <div id="stackedbar">
-                <div class="container">
-                  <p>Add Stack Bar</p>
-                </div>
-              </div>
-
-             
-              </div>
-          </div>
-
-        </div>
 
         <div class="row">
           <!-- Heat Map-->
-          <div class= "col-lg-12 col-md-12 col-sm-12">
+          <div class= "col-lg-6 col-md-6 col-sm-12">
             <div class="card">
               <div class="card-header ">
-                <h5 class="card-title">Map View of Data Jobs Postings</h5>
+                <h5 class="card-title">Thao Hoang</h5>
               </div>
 
               <div class="card-body">
-                <div id="heatmap" class="map"></div>
+                <div></div>
+              </div>
+
+            </div>
+          </div>
+
+          <div class= "col-lg-6 col-md-6 col-sm-12">
+            <div class="card">
+              <div class="card-header ">
+                <h5 class="card-title">Kelvin Deng</h5>
+              </div>
+
+              <div class="card-body">
+                <div></div>
               </div>
 
             </div>
@@ -282,36 +194,9 @@ Coded by www.creative-tim.com
   <script src="https://d3js.org/d3.v6.min.js"></script>
   <!-- <script src="./static/js/plugins/d3.layout.cloud.js"></script> -->
   <!-- <script type="text/javascript" src="./static/js/wordcloud.js"></script> -->
-  <!-- API key -->
-  <script type="text/javascript" src="../static/js/config.js"></script>
   <!-- Leaflet JS -->
   <script src="https://unpkg.com/leaflet@1.3.3/dist/leaflet.js" integrity="sha512-tAGcCfR4Sc5ZP5ZoVz0quoZDYX5aCtEm/eu1KhSLj2c9eFrylXZknQYmxUssFaVJKvvc0dJQixhGjG2yXWiV9Q==" crossorigin=""></script>
-  <!-- Event Lister Code **NEED TO ADD** -->
-  <script type="text/javascript" src="../static/js/optionChanged.js"></script>
-  <!-- Plotly plugin-->
-  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-  <!-- State Lookup tabel -->
-  <script type="text/javascript" src="../static/js/stateLookUp.js"></script>
-  
 
-
-  <!-- Summary  -->
-  <script type="text/javascript" src="../static/js/summary.js"></script>
-
-
-  <!-- Bubble JS -->
-  <script type="text/javascript" src="../static/js/bubble.js"></script>
-
-  <!-- Bar Chart JS -->
-  <script type="text/javascript" src="../static/js/bar.js"></script>
-
-  <!-- Heat Map JS -->
-  <script type="text/javascript" src="../static/js/heatmap.js"></script>
-  <!-- Leaflet heatmap plugin *MUST BE AFTER HEATMAP JS FILE** -->
-  <script type="text/javascript" src="../static/js/leaflet-heat.js"></script>
-
-  <!-- Gauge JS -->
-  <script type="text/javascript" src="../static/js/gauge.js"></script>
 
   
 </body>
