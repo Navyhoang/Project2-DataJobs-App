@@ -1,4 +1,4 @@
-# Data Science Jobs Market
+# Data Science Jobs Market
 
 ## Background
 
