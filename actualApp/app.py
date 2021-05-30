@@ -11,6 +11,16 @@ from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
 from sqlalchemy import create_engine, func
 
+# Function definition
+def total_job_count(title)
+    # Get total counts of specific job
+    job_data = session.query(maintable.job_id, country.country_name, location.state) \
+                            .join(job, maintable.job_title_id == job.job_title_id) \
+                            .join(country, maintable.country_id == country.country_id) \
+                            .join(location, maintable.location_id == location.location_id)\
+                            .filter(job.job_title == title)\
+    return job_data
+
 engine= create_engine("postgres://irxrnnfx:8E4uvAlptBYdblhx20hS5t_elOsRbOxm@suleiman.db.elephantsql.com:5432/irxrnnfx")
 
 Base = automap_base()
