@@ -209,28 +209,13 @@ def summary():
     analyst_data = total_job_count("Data Analyst")
                        
     # Get total counts of Data Scientist jobs
-    scientist_data = session.query(maintable.job_id, country.country_name, location.state)\
-                            .join(job, maintable.job_title_id == job.job_title_id) \
-                            .join(country, maintable.country_id == country.country_id) \
-                            .join(location, maintable.location_id == location.location_id)\
-                            .filter(job.job_title == "Data Scientist")\
-                            # .group_by(country.country_name).count()
+    scientist_data = total_job_count("Data Scientist")
 
     # Get total counts of Data Engineer jobs
-    engineer_data = session.query(maintable.job_id, country.country_name, location.state)\
-                            .join(job, maintable.job_title_id == job.job_title_id) \
-                            .join(country, maintable.country_id == country.country_id) \
-                            .join(location, maintable.location_id == location.location_id)\
-                            .filter(job.job_title == "Data Engineer")\
-                            # .group_by(country.country_name).count()
+    engineer_data = total_job_count("Data Engineer")
 
     # Get total counts of ML jobs
-    ml_data = session.query(maintable.job_id, country.country_name, location.state)\
-                            .join(job, maintable.job_title_id == job.job_title_id) \
-                            .join(country, maintable.country_id == country.country_id) \
-                            .join(location, maintable.location_id == location.location_id)\
-                            .filter(job.job_title == "Machine Learning")\
-                            # .group_by(country.country_name).count()
+    ml_data = total_job_count("Machine Learning")
 
 
     # dataset = []
