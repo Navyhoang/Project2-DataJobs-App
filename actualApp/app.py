@@ -206,14 +206,8 @@ def summary():
 
 
     # Get total counts of Data Analyst jobs
-    analyst_data = session.query(maintable.job_id, country.country_name, location.state) \
-                            .join(job, maintable.job_title_id == job.job_title_id) \
-                            .join(country, maintable.country_id == country.country_id) \
-                            .join(location, maintable.location_id == location.location_id)\
-                            .filter(job.job_title == "Data Analyst")\
-                            # .group_by(country.country_name).count()
+    analyst_data = total_job_count("Data Analyst")
                        
-    
     # Get total counts of Data Scientist jobs
     scientist_data = session.query(maintable.job_id, country.country_name, location.state)\
                             .join(job, maintable.job_title_id == job.job_title_id) \
