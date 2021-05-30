@@ -99,10 +99,8 @@ def heatmap():
                             .join(location, maintable.location_id == location.location_id)\
                             .all()
 
-    dataset = []
-    for item in job_data: 
-        dataset.append(item)
-
+    # Appeding each job entry from job_data to a list
+    dataset = [item for item in job_data]
 
     # Convert the query results to a dictionary 
     output= {"jobs" : [dataset]}
@@ -116,10 +114,8 @@ def instituitions():
     instituition_data = session.query(instituition.institution, country.country_name)\
                         .join(country, instituition.country_id == country.country_id).all()
 
-    dataset = []
-    for item in instituition_data: 
-        dataset.append(item)
-
+    # Appeding each instituition entry from instituition_data to a list
+    dataset = [item for item in instituition_data]
 
     # Convert the query results to a dictionary 
     output= {"instituitions" : [dataset]}
