@@ -133,15 +133,11 @@ def benefits():
                             .join(country, mentalhealth.country_id == country.country_id)\
                             .all()
 
-    benefits_dataset = []
-
-    for item in benefits_data: 
-        benefits_dataset.append(item)
-
+    # Appeding each benefit entry to a list
+    benefits_dataset = [item for item in benefits_data]
 
     # Convert the query results to a dictionary 
-    output= {"Benefits" : benefits_dataset
-            }
+    output= {"Benefits" : benefits_dataset}
 
     return jsonify(output)
 
@@ -153,15 +149,11 @@ def wellness_programs():
                                 .join(country, mentalhealth.country_id == country.country_id)\
                                 .all()
 
-    wellness_dataset = []
-
-    for item in wellness_program: 
-        wellness_dataset.append(item)
-
+    # Appeding each wellness entry to a list
+    wellness_dataset = [item for item in wellness_program]
 
     # Convert the query results to a dictionary 
-    output= {"Wellness Program" : wellness_dataset
-            }
+    output= {"Wellness Program" : wellness_dataset}
 
     return jsonify(output)
 
@@ -176,11 +168,8 @@ def leave():
                                 .join(country, mentalhealth.country_id == country.country_id)\
                                 .all()
 
-
-    leave_dataset = []
-    for item in leave_Data: 
-        leave_dataset.append(item)
-
+    # Appeding each leave entry to a list
+    leave_dataset = [item for item in leave_Data]
 
     # Convert the query results to a dictionary 
     output= {"leave" : [leave_dataset]}
