@@ -12,13 +12,13 @@ from sqlalchemy.orm import Session
 from sqlalchemy import create_engine, func
 
 # Function definition
-def total_job_count(title)
+def total_job_count(title):
     # Get total counts of specific job
     job_data = session.query(maintable.job_id, country.country_name, location.state) \
                             .join(job, maintable.job_title_id == job.job_title_id) \
                             .join(country, maintable.country_id == country.country_id) \
                             .join(location, maintable.location_id == location.location_id)\
-                            .filter(job.job_title == title)\
+                            .filter(job.job_title == title)
     return job_data
 
 engine= create_engine("postgres://irxrnnfx:8E4uvAlptBYdblhx20hS5t_elOsRbOxm@suleiman.db.elephantsql.com:5432/irxrnnfx")
@@ -222,13 +222,13 @@ def summary():
     # for item in analyst_data: 
     #     dataset.append(item)
 
-    analyst = [for item in analyst_data]
+    analyst = [item for item in analyst_data]
 
-    scientist = [for item in scientist_data]
+    scientist = [item for item in scientist_data]
 
-    engineer = [for item in engineer_data]
+    engineer = [item for item in engineer_data]
 
-    ml = [for item in ml_data]  
+    ml = [item for item in ml_data]  
 
     # Convert the query results to a dictionary 
     output= {"Data Analyst" : [analyst],
