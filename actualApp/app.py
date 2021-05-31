@@ -222,21 +222,13 @@ def summary():
     # for item in analyst_data: 
     #     dataset.append(item)
 
-    analyst = []
-    for item in analyst_data: 
-        analyst.append(item)
+    analyst = [for item in analyst_data]
 
-    scientist = []
-    for item in scientist_data: 
-        scientist.append(item)
+    scientist = [for item in scientist_data]
 
-    engineer = []
-    for item in engineer_data: 
-        engineer.append(item)
+    engineer = [for item in engineer_data]
 
-    ml = []
-    for item in ml_data: 
-        ml.append(item)        
+    ml = [for item in ml_data]  
 
     # Convert the query results to a dictionary 
     output= {"Data Analyst" : [analyst],
