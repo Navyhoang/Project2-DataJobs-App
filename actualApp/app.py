@@ -277,10 +277,13 @@ def title_keywords():
         return dict_output
     
     # Create an empty dict, iterate the title in jobs_dict to create a dict of results
-    output_titles = {}
-    for kw in jobs_dict:
-        # Assign function returned value to a new key
-        output_titles[kw] = get_keywords_count(kw)
+    # output_titles = {}
+    # for kw in jobs_dict:
+    #     # Assign function returned value to a new key
+    #     output_titles[kw] = get_keywords_count(kw)
+    
+    # Using dict generator expression to create a frequency dictionary
+    output_titles = dict((kw, get_keywords_count(kw)) for kw in jobs_dict)
 
     return jsonify(output_titles)
 
