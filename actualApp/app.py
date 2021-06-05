@@ -206,37 +206,33 @@ def summary():
 
 
     # Get total counts of Data Analyst jobs
-    analyst_data = total_job_count("Data Analyst")
+    # analyst_data = total_job_count("Data Analyst")
                        
-    # Get total counts of Data Scientist jobs
-    scientist_data = total_job_count("Data Scientist")
+    # # Get total counts of Data Scientist jobs
+    # scientist_data = total_job_count("Data Scientist")
 
-    # Get total counts of Data Engineer jobs
-    engineer_data = total_job_count("Data Engineer")
+    # # Get total counts of Data Engineer jobs
+    # engineer_data = total_job_count("Data Engineer")
 
-    # Get total counts of ML jobs
-    ml_data = total_job_count("Machine Learning")
+    # # Get total counts of ML jobs
+    # ml_data = total_job_count("Machine Learning")
 
+    # Get total counts of each Data job
+    # Put all job positings in a list
+    analyst = [item for item in total_job_count("Data Analyst")]
 
-    # dataset = []
-    # for item in analyst_data: 
-    #     dataset.append(item)
+    scientist = [item for item in total_job_count("Data Scientist")]
 
-    analyst = [item for item in analyst_data]
+    engineer = [item for item in total_job_count("Data Engineer")]
 
-    scientist = [item for item in scientist_data]
-
-    engineer = [item for item in engineer_data]
-
-    ml = [item for item in ml_data]  
-
+    ml = [item for item in total_job_count("Machine Learning")]  
+    
     # Convert the query results to a dictionary 
     output= {"Data Analyst" : [analyst],
             "Data Scientist": [scientist],
             "Data Engineer": [engineer],
             "Machine Learning": [ml]
             }
-
 
     return jsonify(output)
 
