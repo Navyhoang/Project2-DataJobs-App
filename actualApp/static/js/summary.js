@@ -48,7 +48,7 @@ function updateSummary(countrySelected) {
 
         //adding total job postings
         card.html(`<p> Total Job Postings for <b>${countrySelected}</b>: ${filteredList.length}<p>`)
-        console.log(summary)
+        // console.log(summary)
         // A list for pie chart data
         pieData = []
         pieLabel = []
