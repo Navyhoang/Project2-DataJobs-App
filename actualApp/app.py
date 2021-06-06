@@ -21,6 +21,12 @@ def total_job_count(title):
                             .filter(job.job_title == title)
     return job_data
 
+# A list for all jobs
+jobs_dict = {"Data Analyst" : 1,
+        "Data Scientist": 2,
+        "Data Engineer": 3,
+        "Machine Learning": 4}
+
 engine= create_engine("postgres://irxrnnfx:8E4uvAlptBYdblhx20hS5t_elOsRbOxm@suleiman.db.elephantsql.com:5432/irxrnnfx")
 
 Base = automap_base()
@@ -219,31 +225,34 @@ def summary():
 
     # Get total counts of each Data job
     # Put all job positings in a list
-    analyst = [item for item in total_job_count("Data Analyst")]
+    # analyst = [item for item in total_job_count("Data Analyst")]
 
-    scientist = [item for item in total_job_count("Data Scientist")]
+    # scientist = [item for item in total_job_count("Data Scientist")]
 
-    engineer = [item for item in total_job_count("Data Engineer")]
+    # engineer = [item for item in total_job_count("Data Engineer")]
 
-    ml = [item for item in total_job_count("Machine Learning")]  
-    
+    # ml = [item for item in total_job_count("Machine Learning")]  
+
     # Convert the query results to a dictionary 
-    output= {"Data Analyst" : [analyst],
-            "Data Scientist": [scientist],
-            "Data Engineer": [engineer],
-            "Machine Learning": [ml]
-            }
+    # output= {"Data Analyst" : [analyst],
+    #         "Data Scientist": [scientist],
+    #         "Data Engineer": [engineer],
+    #         "Machine Learning": [ml]
+    #         }
+
+    """
+    This Generator function returns a list of all job titles
+    from the pre-defined dict jobs_dict as index,
+    and its list of all related job postings
+    by using the function (total_job_count).
+    It should give the same result as the code block above.
+    """
+    output = dict((kw, dict([item for item in total_job_count(kw)])) for kw in jobs_dict)
 
     return jsonify(output)
 
 @app.route("/api/keywords")
 def title_keywords():
-
-    # A list for all jobs
-    jobs_dict = {"Data Analyst" : 1,
-            "Data Scientist": 2,
-            "Data Engineer": 3,
-            "Machine Learning": 4}
 
     # A function to count each job title keywords in the job name, return the list of frequencies
     def get_keywords_count(job_title_name):
