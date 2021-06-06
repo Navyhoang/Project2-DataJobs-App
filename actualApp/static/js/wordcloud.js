@@ -114,14 +114,14 @@ d3.json("/api/keywords", function(keywordData) {
             if (value > freqValue) {
                 // Check if the key matches the filter list
                 if (filteredList.indexOf(key) >= 0) {
-                    console.log(key, value);
+                    // console.log(key, value);
                     return { text: key, size: value/2};
                 } else {
                     return { text: key, size: value };
                 }
             }
         }).filter(d => d);
-        console.log(words)
+        // console.log(words)
         return words
     }
 
